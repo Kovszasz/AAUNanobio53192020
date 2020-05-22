@@ -26,7 +26,7 @@ def load(l):
             elif type_=='l':
                 QMdict[l].append(float(s[1]))
             elif type_=='b':
-                QMdict[l].append(abs(abs(float(s[0]))-abs(float(s[1]))))
+                QMdict[l].append(float(s[0])-float(s[1]))
             else:
                 raise 'Please choos either \'h\' or \'l\' or \'b\' '
     return QMdict
@@ -52,7 +52,7 @@ def load6pep(l):
             elif type_=='l':
                 QMdict[l].append(float(s[1]))
             elif type_=='b':
-                QMdict[l].append(abs(abs(float(s[0]))-abs(float(s[1]))))
+                QMdict[l].append(float(s[0])-float(s[1]))
             else:
                 raise 'Please choos either \'h\' or \'l\' or \'b\' '
     return QMdict

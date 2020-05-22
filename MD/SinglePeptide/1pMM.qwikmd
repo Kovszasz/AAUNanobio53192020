@@ -1,0 +1,67 @@
+####################
+#		 QwikMD Input File
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+
+####################
+set QWIKMD::nucleicmcr {(not name QWIKMDDELETE and nucleic)}
+set QWIKMD::proteinmcr {(not name QWIKMDDELETE and protein)}
+set QWIKMD::heteromcr {(not name QWIKMDDELETE and hetero and not qwikmd_protein and not qwikmd_lipid and not qwikmd_nucleic and not qwikmd_glycan and not water)}
+set QWIKMD::glycanmcr {(not name QWIKMDDELETE and glycan)}
+set QWIKMD::lipidmcr {(not name QWIKMDDELETE and lipid)}
+atomselect macro qwikmd_protein $QWIKMD::proteinmcr
+atomselect macro qwikmd_nucleic $QWIKMD::nucleicmcr
+atomselect macro qwikmd_glycan $QWIKMD::glycanmcr
+atomselect macro qwikmd_lipid $QWIKMD::lipidmcr
+atomselect macro qwikmd_hetero $QWIKMD::heteromcr
+$QWIKMD::topGui.nbinput select 1
+set QWIKMD::prepared 1
+QWIKMD::changeMainTab
+$QWIKMD::topGui.nbinput.f2.nb select 0
+QWIKMD::ChangeMdSmd 2
+set aux "[file rootname $QWIKMD::basicGui(workdir,0)]"
+set QWIKMD::outPath ${aux}
+cd ${QWIKMD::outPath}/run/
+set QWIKMD::inputstrct {GFD3_single_QwikMD.psf GFD3_single_QwikMD.pdb}
+QWIKMD::LoadButt {GFD3_single_QwikMD.psf GFD3_single_QwikMD.pdb}
+set QWIKMD::autorename 1
+array set QWIKMD::basicGui {saltconc,MD,0 0.15 temperature,MDFF,0 27 scheme {VMD Classic} ambientocclusion off saltconc,SMD,0 0.15 live,0 0 live,1 0 currenttime,0 {} currenttime,1 {} saltions,SMD,0 NaCl res Window plength 10.0 rendermode Normal saltions,MD,0 NaCl temperature,MD,0 27 solvent,SMD,0 Implicit mdPrec,0 0 pspeed 2.5 temperature,SMD,0 27 mdtime,0 10.0 prtcl,SMD,smd 1 mdtime,1 4.0 prtcl,MD,md 1 desktop {} prtcl,MD,equi 1 solvent,MD,0 Implicit cuedensity 0.320000 prtcl,SMD,equi 1 shadows off quality Low saltions,MDFF,0 NaCl currenttime {Completed 0.000 of 0.000 ns} prtcl,MD,smd 0 prtcl,SMD,md 1 wsize {672 818} saltconc,MDFF,0 0.15 }
+array set QWIKMD::advGui {saltconc,MD,0 0.15 temperature,MDFF,0 27 scheme {VMD Classic} ambientocclusion off saltconc,SMD,0 0.15 live,0 0 live,1 0 currenttime,0 {} currenttime,1 {} saltions,SMD,0 NaCl res Window plength 10.0 rendermode Normal saltions,MD,0 NaCl temperature,MD,0 27 solvent,SMD,0 Implicit mdPrec,0 0 pspeed 2.5 temperature,SMD,0 27 mdtime,0 10.0 prtcl,SMD,smd 1 mdtime,1 4.0 prtcl,MD,md 1 desktop {} prtcl,MD,equi 1 solvent,MD,0 Implicit cuedensity 0.320000 prtcl,SMD,equi 1 shadows off quality Low saltions,MDFF,0 NaCl currenttime {Completed 0.000 of 0.000 ns} prtcl,MD,smd 0 prtcl,SMD,md 1 wsize {672 818} saltconc,MDFF,0 0.15 qmoptions,lssmode,all Off pntchrgopt,pcDist 10 protocoltb,MD,1,qmmm 0 protocoltb,MD,0,smd 0 qmoptions,ptcqmval,QMMM-Ann {{!B3LYP 6-31G* Grid4} {!EnGrad TightSCF}} protocoltb,QM/MM,2,saveAsTemplate 0 mdff,min 200 analyze,advance,calcombo {H Bonds} protocoltb,MD,1,lock 0 protocoltb,SMD,3,restrsel {} qmoptions,qmgentopo 0 analyze,advance,hbondsel2entry {Type Selection} protocoltb,MD,1,restrsel {} qmoptions,execseqproc,QMMM-Min 0 qmregopt,atmnumb 0 protocoltb,SMD,2,saveAsTemplate 0 solvent,boxbuffer,SMD 15 qmoptions,ptcqmval,all {{!B3LYP 6-31G* Grid4} {!EnGrad TightSCF}} qmoptions,qmbondsheme,QMMM CS qmoptions,execseqproc,QMMM-Equi 0 protocoltb,QM/MM,3,qmmm 0 protocoltb,SMD,0,restrIndex {} qmoptions,cmptcharge,QMMM-Equi Off protocoltb,QM/MM,2,smd 0 qmoptions,lssmode,QMMM-Min Off protocoltb,QM/MM,0,qmmm 0 qmoptions,dcdfrq,QMMM 1 qmoptions,soft,QMMM ORCA protocoltb,QM/MM,3,lock 0 protocoltb,QM/MM,3,restrsel {} saltions,MDFF,0 NaCl protocoltb,SMD,0,restrsel {} protocoltb,QM/MM,0,lock 0 qmoptions,qmbondsheme,QMMM-Equi CS ignoreforces 1 protocoltb,SMD,2,qmmm 0 protocoltb,QM/MM,0,restrIndex {} saltconc,MDFF,0 0.15 membrane,xsize 30 protocoltb,SMD,2,smd 0 qmoptions,qmbondsheme,QMMM-Ann CS protocoltb,SMD,1,restrIndex {} membrane,efect translate analyze,basic,selcombo backbone protocoltb,SMD,2,lock 0 qmoptions,ptchrgschm,QMMM-Min Round protocoltb,MD,2,smd 0 protocoltb,MD,0,restrIndex {} qmoptions,ptcharge,QMMM On saltions,SMD,0 NaCl solvent,QM/MM,0 Explicit qmoptions,ptcharge,QMMM-Ann On solvent,boxbuffer,MDFF 15 protocoltb,QM/MM,1,saveAsTemplate 0 protocoltb,QM/MM,1,restrIndex {} solvent,boxbuffer,QM/MM 15 solvent,SMD,0 Explicit solvent,minimalbox,SMD 0 protocoltb,QM/MM,0,restrsel {} qmoptions,switchtype,QMMM-Min Switch qmoptions,cmptcharge,QMMM Off protocoltb,SMD,2,restrIndex {} qmoptions,cmptcharge,QMMM-Ann Off protocoltb,MD,2,restrsel {} analyze,basic,alicombo backbone protocoltb,MD,0,qmmm 0 protocoltb,MD,2,saveAsTemplate 0 qmoptions,soft,all ORCA qmoptions,dcdfrq,all 1 membrane,axis x protocoltb,SMD,1,saveAsTemplate 0 protocoltb,MD,0,lock 0 protocoltb,MD,1,restrIndex {} solvent,boxbuffer,MD 12 solvent,MDFF,0 Vacuum analyze,advance,hbondsel1entry {Type Selection} qmoptions,ptcqmval,QMMM-Equi {{!B3LYP 6-31G* Grid4} {!EnGrad TightSCF}} saltions,QM/MM,0 NaCl protocoltb,QM/MM,2,restrIndex {} qmoptions,dcdfrq,QMMM-Equi 1 qmoptions,soft,QMMM-Equi ORCA protocoltb,SMD,3,restrIndex {} qmoptions,execseqproc,all 0 qmoptions,execseqproc,QMMM-Ann 0 pntchrgopt,qmsolv 10 qmoptions,switchtype,QMMM-Equi Switch qmoptions,checkchrgMOPAC 0 solvent,minimalbox,MDFF 0 analyze,basic,selentry {Type Selection} protocoltb,SMD,1,restrsel {} protocoltb,QM/MM,2,qmmm 0 protocoltb,MD,2,restrIndex {} saltconc,MD,0 0.15 addmol 10 protocoltb,MD,0 Minimization protocoltb,MD,1 Annealing protocoltb,MD,2 Equilibration qmoptions,ptchrgschm,QMMM Round protocoltb,QM/MM,3,restrIndex {} protocoltb,QM/MM,2,lock 0 protocoltb,QM/MM,1,smd 0 saltconc,SMD,0 0.15 qmoptions,lssmode,QMMM-Ann Off qmoptions,soft,QMMM-Min ORCA qmoptions,dcdfrq,QMMM-Min 1 protocoltb,SMD,1,qmmm 0 protocoltb,SMD,0 Minimization protocoltb,SMD,1 Annealing saltions,MD,0 NaCl qmoptions,qmbondsheme,all CS analyze,basic,alientry {Type Selection} protocoltb,SMD,2 Equilibration protocoltb,SMD,3 SMD protocoltb,SMD,1,lock 0 protocoltb,QM/MM,0,saveAsTemplate 0 protocoltb,SMD,1,smd 0 qmtable,QMreg 0 protocoltb,QM/MM,0 QMMM-Min protocoltb,QM/MM,1 QMMM-Ann protocoltb,QM/MM,1,restrsel {} protocoltb,QM/MM,2 QMMM-Equi protocoltb,QM/MM,3 QMMM solvent,minimalbox,QM/MM 0 protocoltb,MD,1,saveAsTemplate 0 protocoltb,SMD,0,saveAsTemplate 0 qmoptions,ptchrgschm,QMMM-Ann Round protocoltb,MD,1,smd 0 qmoptions,ptcqmval,QMMM-Min {{!B3LYP 6-31G* Grid4} {!EnGrad TightSCF}} qmregopt,lblqmcharge 0 protocoltb,MD,2,qmmm 0 protocoltb,MD,2,lock 0 qmoptions,switchtype,QMMM-Ann Switch qmoptions,cmptcharge,all Off qmoptions,ptchrgschm,all Round qmoptions,ressel {} protocoltb,QM/MM,3,saveAsTemplate 0 membrane,multi 1 saltconc,QM/MM,0 0.15 protocoltb,SMD,2,restrsel {} protocoltb,MD,0,restrsel {} qmoptions,ptcqmval,QMMM {{!B3LYP 6-31G* Grid4} {!EnGrad TightSCF}} protocoltb,QM/MM,3,smd 0 qmoptions,crrtprtcl all protocoltb,SMD,3,saveAsTemplate 0 protocoltb,QM/MM,1,qmmm 0 membrane,lipid POPC protocoltb,QM/MM,1,lock 0 qmoptions,ptchrgschm,QMMM-Equi Round qmoptions,qmbondsheme,QMMM-Min CS membrane,ysize 30 protocoltb,SMD,3,smd 0 qmoptions,ptcharge,QMMM-Equi On qmoptions,lssmode,QMMM-Equi Off protocoltb,SMD,3,qmmm 0 qmoptions,switchtype,all Switch protocoltb,QM/MM,0,smd 0 protocoltb,SMD,0,qmmm 0 qmoptions,lssmode,QMMM Off protocoltb,QM/MM,2,restrsel {} analyze,basic,alicheck 0 solvent,MD,0 Explicit protocoltb,MD,0,saveAsTemplate 0 protocoltb,SMD,3,lock 0 qmoptions,soft,QMMM-Ann ORCA qmoptions,dcdfrq,QMMM-Ann 1 qmoptions,ptcharge,all On protocoltb,SMD,0,lock 0 qmoptions,ptcharge,QMMM-Min On qmoptions,execseqproc,QMMM 0 qmoptions,switchtype,QMMM Switch qmoptions,cmptcharge,QMMM-Min Off solvent,minimalbox,MD 1 protocoltb,SMD,0,smd 0 mdff,mdff 50000 }
+array set QWIKMD::chains {0,0 1 0,1 {A and protein} 0,2 {1 - 7}}
+array set QWIKMD::index_cmb {{A and protein,3} 0 {A and protein,4} rep1 {A and protein,1} NewCartoon {A and protein,5} {chain "A" and qwikmd_protein} {A and protein,2} {0 blue} }
+set QWIKMD::delete {}
+array set QWIKMD::mutate {}
+array set QWIKMD::protonate { }
+set QWIKMD::mutindex {}
+set QWIKMD::protindex {}
+set QWIKMD::renameindex {}
+array set QWIKMD::dorename {}
+set QWIKMD::atmsRenameLog {}
+set QWIKMD::atmsReorderLog {}
+set QWIKMD::atmsDeleteLog {}
+set QWIKMD::patchestr {}
+set QWIKMD::state 0
+set QWIKMD::load 1
+set QWIKMD::prevconfFile {Minimization Annealing Equilibration}
+set QWIKMD::confFile $QWIKMD::prevconfFile
+set prtclLines {{Minimization 2000 backbone NpT 0 1} {Annealing 144000 backbone NpT 27 1} {Equilibration 500000 backbone NpT 27 1}}
+for {set i 0} {$i < [llength $prtclLines]} {incr i} {
+	$QWIKMD::advGui(protocoltb,$QWIKMD::run) insert end [lindex $prtclLines $i]
+	if {[file exists [lindex [lindex $prtclLines $i] 0].dcd] == 1} {
+		incr QWIKMD::state
+	}
+}
+pbc box -center bb -color yellow -width 4
+set QWIKMD::pbcInfo [pbc get -last end -nocheck]
+set QWIKMD::basicGui(live,1) 0
+set QWIKMD::dcdfreq 100000
+set QWIKMD::smdfreq 40
+set QWIKMD::maxSteps {2000 144000 500000}
